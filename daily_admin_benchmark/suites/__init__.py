@@ -1,0 +1,2 @@
+"""Custom AgentDojo suites."""
+

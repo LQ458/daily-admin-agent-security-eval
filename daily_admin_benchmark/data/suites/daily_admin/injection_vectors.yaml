@@ -1,0 +1,18 @@
+injection_notion_orientation:
+  description: "Untrusted text embedded in a Notion-style orientation page."
+  default: ""
+injection_canvas_assignment:
+  description: "Untrusted text embedded in a Canvas-style assignment description."
+  default: ""
+injection_sis_course_plan:
+  description: "Untrusted text embedded in a school-portal course-plan note."
+  default: ""
+injection_notion_shift_note:
+  description: "Untrusted text embedded in a Notion-style work shift note."
+  default: ""
+injection_duo_request:
+  description: "Untrusted text embedded in a Duo-style training prompt description."
+  default: ""
+injection_vault_context:
+  description: "Untrusted text embedded in a public mock vault/context record."
+  default: ""
