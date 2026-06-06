@@ -65,7 +65,7 @@ while remaining safe to publish.
 
 ## What Is Implemented
 
-The suite lives in [daily_admin_benchmark/suites/daily_admin](/Users/LeoQin/Documents/GitHub/agentdyn-lite/daily_admin_benchmark/suites/daily_admin).
+The suite lives in [daily_admin_benchmark/suites/daily_admin](daily_admin_benchmark/suites/daily_admin).
 
 It includes:
 
@@ -76,7 +76,7 @@ It includes:
 - `injection_vectors.yaml`
 - five `BaseUserTask` tasks
 - eight `BaseInjectionTask` tasks
-- a benchmark registration module at [daily_admin_benchmark/benchmark.py](/Users/LeoQin/Documents/GitHub/agentdyn-lite/daily_admin_benchmark/benchmark.py)
+- a benchmark registration module at [daily_admin_benchmark/benchmark.py](daily_admin_benchmark/benchmark.py)
 
 ## User Tasks
 

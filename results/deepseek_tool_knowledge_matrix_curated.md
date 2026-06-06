@@ -5,7 +5,7 @@ Recorded on 2026-06-06.
 ## Run
 
 ```bash
-/opt/anaconda3/bin/python -m daily_admin_benchmark.run_deepseek \
+python -m daily_admin_benchmark.run_deepseek \
   --model deepseek-v4-flash \
   --attack tool_knowledge \
   --force-rerun

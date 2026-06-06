@@ -9,7 +9,7 @@ a synthetic value stored only in the mock environment.
 ## Command
 
 ```bash
-PYTHONUNBUFFERED=1 /opt/anaconda3/bin/python -m daily_admin_benchmark.run_model \
+PYTHONUNBUFFERED=1 python -m daily_admin_benchmark.run_model \
   --provider deepseek \
   --model deepseek-v4-flash \
   --attack embedded_procedure \
