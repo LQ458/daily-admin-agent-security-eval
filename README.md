@@ -1,6 +1,6 @@
 # Daily Admin Agent Security Eval
 
-A small AgentDojo compatible suite I built after reading AgentDyn that investigates the feasibility of an agent to finish useful daily administration workflows while treating content retrieved from apps as untrusted data.
+A small AgentDojo compatible suite I built after reading AgentDyn that explores whether an agent can complete useful daily-administration workflows while treating retrieved app content as untrusted data.
 
 ## Status / Scope
 
