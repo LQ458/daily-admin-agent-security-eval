@@ -1,13 +1,14 @@
-# Daily Admin AgentDojo Evaluation Suite
+# Daily Admin Agent Security Eval
 
-Daily Admin is a small custom **AgentDojo** task suite inspired by AgentDyn. It
-evaluates whether an AI agent can complete realistic administrative workflows
+Daily Admin Agent Security Eval is a custom **AgentDojo** task suite for
+evaluating whether an AI agent can complete realistic administrative workflows
 while treating retrieved app content as untrusted data.
 
 The suite focuses on everyday tool use: notes, tasks, coursework, school
-planning, time entry, settings, and access review. It is not a reproduction of
-AgentDyn. It is a focused public artifact that demonstrates evaluation design
-for agent safety and security.
+planning, time entry, settings, and access review. The project takes motivation
+from AgentDyn, but it is not a reproduction of AgentDyn and does not attempt to
+replicate the benchmark. It is a focused public artifact that demonstrates
+evaluation design for agent safety and security.
 
 All services, users, records, and outputs in this repository are simulated. The
 suite does not use real accounts, credentials, personal data, production
@@ -163,8 +164,8 @@ APIs:
 python -m daily_admin_benchmark.run_model
 ```
 
-Supported provider presets are `deepseek`, `openai`, `openrouter`, `together`,
-`groq`, `fireworks`, `local`, and `custom`. The old
+Supported provider presets are `deepseek`, `siliconflow`, `openai`,
+`openrouter`, `together`, `groq`, `fireworks`, `local`, and `custom`. The old
 `daily_admin_benchmark.run_deepseek` module remains as a compatibility wrapper
 for DeepSeek commands. New examples should use `run_model`.
 
@@ -181,6 +182,18 @@ DEEPSEEK_API_KEY=sk-your-real-key
 DEEPSEEK_BASE_URL=https://api.deepseek.com
 DEEPSEEK_MODEL=deepseek-v4-flash
 ```
+
+For SiliconFlow, set:
+
+```bash
+SILICONFLOW_API_KEY=sk-your-siliconflow-key
+SILICONFLOW_BASE_URL=https://api.siliconflow.cn/v1
+SILICONFLOW_MODEL=Pro/zai-org/GLM-4.7
+```
+
+SiliconFlow uses an OpenAI compatible chat completions interface and exposes
+domestic model families such as GLM, Qwen, DeepSeek, Kimi, Hunyuan, MiniMax,
+and Step. Choose the model ID from the SiliconFlow model catalog.
 
 Validate the local config without making an API call:
 
@@ -219,6 +232,18 @@ Run one injection check:
 python -m daily_admin_benchmark.run_model \
   --provider deepseek \
   --model deepseek-v4-flash \
+  --attack tool_knowledge \
+  --user-task user_task_0 \
+  --injection-task injection_task_0 \
+  --force-rerun
+```
+
+Run the same check through SiliconFlow:
+
+```bash
+python -m daily_admin_benchmark.run_model \
+  --provider siliconflow \
+  --model "$SILICONFLOW_MODEL" \
   --attack tool_knowledge \
   --user-task user_task_0 \
   --injection-task injection_task_0 \
@@ -267,9 +292,9 @@ python -m daily_admin_benchmark.run_model \
   --force-rerun
 ```
 
-For OpenRouter, Together, Groq, or Fireworks, set the matching `*_API_KEY` and
-`*_MODEL` variables from `.env.example`, then pass the matching `--provider`
-value.
+For SiliconFlow, OpenRouter, Together, Groq, or Fireworks, set the matching
+`*_API_KEY` and `*_MODEL` variables from `.env.example`, then pass the matching
+`--provider` value.
 
 For a local or custom OpenAI compatible endpoint:
 
@@ -284,9 +309,11 @@ python -m daily_admin_benchmark.run_model \
 
 The runner defaults to DeepSeek's provider preset, model, and base URL when no
 provider is specified. DeepSeek specific thinking controls are available through
-`--thinking enabled --reasoning-effort high`. For other providers, pass request
-fields through `--extra-body-json`. The `--api-timeout` option keeps targeted
-experiments from hanging indefinitely on provider or network stalls.
+`--thinking enabled --reasoning-effort high`. SiliconFlow models that support
+thinking mode can also use `--thinking enabled`, which sends `enable_thinking`.
+For other provider specific request fields, use `--extra-body-json`. The
+`--api-timeout` option keeps targeted experiments from hanging indefinitely on
+provider or network stalls.
 
 ## Relationship To AgentDyn
 
@@ -334,3 +361,4 @@ realistic daily administration setting.
 - Canvas LMS REST API: https://canvas.instructure.com/doc/api/
 - Workday REST API directory: https://community.workday.com/sites/default/files/file-hosting/restapi/index.html
 - Duo Admin API: https://duo.com/docs/adminapi
+- SiliconFlow OpenAI chat completions API: https://api-docs.siliconflow.cn/docs/api/chat-completions-post

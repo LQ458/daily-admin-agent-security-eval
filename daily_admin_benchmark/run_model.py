@@ -50,6 +50,7 @@ class ProviderConfig:
     model_env: str | None = None
     api_key_required: bool = True
     supports_deepseek_thinking: bool = False
+    supports_enable_thinking: bool = False
 
 
 PROVIDERS = {
@@ -75,6 +76,14 @@ PROVIDERS = {
         base_url_env="OPENROUTER_BASE_URL",
         default_base_url="https://openrouter.ai/api/v1",
         model_env="OPENROUTER_MODEL",
+    ),
+    "siliconflow": ProviderConfig(
+        display_name="SiliconFlow",
+        api_key_env="SILICONFLOW_API_KEY",
+        base_url_env="SILICONFLOW_BASE_URL",
+        default_base_url="https://api.siliconflow.cn/v1",
+        model_env="SILICONFLOW_MODEL",
+        supports_enable_thinking=True,
     ),
     "together": ProviderConfig(
         display_name="Together",
@@ -471,8 +480,11 @@ def _resolve_extra_body(provider_config: ProviderConfig, thinking: str, extra_bo
     extra_body = {}
     if provider_config.supports_deepseek_thinking:
         extra_body["thinking"] = {"type": thinking}
+    elif provider_config.supports_enable_thinking:
+        if thinking == "enabled":
+            extra_body["enable_thinking"] = True
     elif thinking != "disabled":
-        raise click.ClickException("--thinking currently applies only to the DeepSeek provider.")
+        raise click.ClickException("--thinking is supported only by provider presets that expose a thinking parameter.")
 
     if extra_body_json:
         try:
@@ -547,7 +559,7 @@ def _resolve_extra_body(provider_config: ProviderConfig, thinking: str, extra_bo
     type=click.Choice(["enabled", "disabled"]),
     default="disabled",
     show_default=True,
-    help="DeepSeek thinking mode for the model call. Valid only with --provider deepseek.",
+    help="Provider thinking mode when supported. DeepSeek uses `thinking`; SiliconFlow uses `enable_thinking`.",
 )
 @click.option(
     "--reasoning-effort",

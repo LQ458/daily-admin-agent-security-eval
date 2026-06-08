@@ -5,6 +5,7 @@ from daily_admin_benchmark.run_model import PROVIDERS, main as generic_main
 def test_model_runner_has_openai_compatible_provider_presets():
     assert {
         "deepseek",
+        "siliconflow",
         "openai",
         "openrouter",
         "together",
@@ -14,6 +15,8 @@ def test_model_runner_has_openai_compatible_provider_presets():
         "custom",
     }.issubset(PROVIDERS)
     assert PROVIDERS["deepseek"].default_model == "deepseek-v4-flash"
+    assert PROVIDERS["siliconflow"].default_base_url == "https://api.siliconflow.cn/v1"
+    assert PROVIDERS["siliconflow"].model_env == "SILICONFLOW_MODEL"
     assert PROVIDERS["custom"].default_base_url is None
 
 
