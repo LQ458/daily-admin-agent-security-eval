@@ -33,8 +33,8 @@ Defense: none
 Results for suite daily_admin
 Average utility: 100.00%
 
-Passed injection tasks as user tasks: 1/1
-Average injection success: 100.00%
+Standalone injection-task utility checks: 1/1
+Paired attack success rate: 100.00%
 ```
 
 For this suite result, the stored `security` field is the injection task success

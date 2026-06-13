@@ -144,6 +144,7 @@ class OpenAICompatibleLLM(BasePipelineElement):
         extra_body: dict | None = None,
         reasoning_effort: str | None = None,
         timeout: float | None = 45.0,
+        max_tokens: int | None = None,
     ) -> None:
         self.client = client
         self.model = model
@@ -152,6 +153,7 @@ class OpenAICompatibleLLM(BasePipelineElement):
         self.extra_body = extra_body
         self.reasoning_effort = reasoning_effort
         self.timeout = timeout
+        self.max_tokens = max_tokens
 
     def _completion(self, messages: list[dict], tools: list[dict], tool_choice: str | None = None):
         kwargs = {
@@ -170,6 +172,8 @@ class OpenAICompatibleLLM(BasePipelineElement):
             kwargs["tool_choice"] = tool_choice or "auto"
         if self.timeout is not None:
             kwargs["timeout"] = self.timeout
+        if self.max_tokens is not None:
+            kwargs["max_tokens"] = self.max_tokens
         return self.client.chat.completions.create(**kwargs)
 
     def query(

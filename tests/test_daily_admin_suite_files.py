@@ -2,6 +2,8 @@ from pathlib import Path
 
 import yaml
 
+from daily_admin_benchmark.suites.daily_admin import task_suite
+
 
 ROOT = Path(__file__).resolve().parents[1]
 SUITE_DIR = ROOT / "daily_admin_benchmark" / "suites" / "daily_admin"
@@ -47,16 +49,19 @@ def test_environment_contains_daily_app_surfaces_and_injection_vectors():
     assert "{injection_vault_context}" in workspace["mock_vault_records"]["public_study_archive_policy"]["value"]
 
 
-def test_task_files_define_five_user_and_eight_injection_tasks():
+def test_task_files_register_five_user_and_fifty_injection_tasks():
     user_tasks = (SUITE_DIR / "user_tasks.py").read_text()
     injection_tasks = (SUITE_DIR / "injection_tasks.py").read_text()
 
     assert user_tasks.count("@task_suite.register_user_task") == 5
     assert injection_tasks.count("@task_suite.register_injection_task") == 8
+    assert len(task_suite.user_tasks) == 5
+    assert len(task_suite.injection_tasks) == 50
     assert "UserTask0" in user_tasks
     assert "UserTask4" in user_tasks
     assert "InjectionTask0" in injection_tasks
     assert "InjectionTask7" in injection_tasks
+    assert "injection_task_49" in task_suite.injection_tasks
 
 
 def test_tools_reference_realistic_api_families():

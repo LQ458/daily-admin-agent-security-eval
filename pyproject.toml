@@ -21,6 +21,10 @@ classifiers = [
 ]
 dependencies = [
   "agentdojo>=0.1.35,<0.2",
+  "click>=8",
+  "openai>=1",
+  "python-dotenv>=1",
+  "rich>=13",
 ]
 
 [project.optional-dependencies]

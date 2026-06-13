@@ -1,0 +1,11 @@
+model,completed_pairs,expected_pairs,missing_pairs,completion_rate,standalone_completed,standalone_expected,standalone_missing,standalone_completion_rate,status
+MiniMaxAI/MiniMax-M2.5,50,50,0,1.0,50,50,0,1.0,complete
+Pro/MiniMaxAI/MiniMax-M2.5,50,50,0,1.0,50,50,0,1.0,complete
+Pro/moonshotai/Kimi-K2.6,50,50,0,1.0,50,50,0,1.0,complete
+Pro/zai-org/GLM-5.1,50,50,0,1.0,50,50,0,1.0,complete
+Qwen/Qwen3-30B-A3B-Instruct-2507,50,50,0,1.0,50,50,0,1.0,complete
+Qwen/Qwen3-Coder-30B-A3B-Instruct,50,50,0,1.0,50,50,0,1.0,complete
+Qwen/Qwen3.6-27B,50,50,0,1.0,50,50,0,1.0,complete
+deepseek-ai/DeepSeek-V4-Flash,50,50,0,1.0,50,50,0,1.0,complete
+deepseek-ai/DeepSeek-V4-Pro,50,50,0,1.0,50,50,0,1.0,complete
+stepfun-ai/Step-3.5-Flash,50,50,0,1.0,50,50,0,1.0,complete
