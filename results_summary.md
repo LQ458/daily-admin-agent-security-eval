@@ -2,7 +2,7 @@
 
 Updated on 2026-06-13.
 
-This is a small update for the `daily_admin` AgentDojo suite. It follows Hao Li's suggestions at a limited scale: try cheap-model runs first, report utility and attack success separately, and add stronger synthetic attack framings with broader synthetic targets.
+This is a small update for the `daily_admin` AgentDojo suite. It follows feedback I received at a limited scale: try cheap-model runs first, report utility and attack success separately, and add stronger synthetic attack framings with broader synthetic targets.
 
 ## Scope
 
